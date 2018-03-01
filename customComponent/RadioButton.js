@@ -32,7 +32,7 @@ export default class RadioButton extends React.Component{
       onPress={ this.clickRadioButton.bind(this)}
         >
       <View style={[radioButtonStyle.cotener, {borderColor : this.props.tintColor}]}>
-        <View style={[radioButtonStyle.ChildCotener, {backgroundColor: this.state.bgColor}]} />
+        <View style={[radioButtonStyle. ChildCotener, {backgroundColor: this.state.bgColor}]} />
 
        </View>
        </TouchableOpacity>

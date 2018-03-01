@@ -1,7 +1,26 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions,  TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions,  TouchableOpacity, Button, Modal } from 'react-native';
 import RadioButton from './customComponent/RadioButton';
 import CustomList from './customComponent/CustomList';
+
+import App2 from './App2';
+
+
+ // <SectionList style={{width: 200}}
+ //  sections={[
+ //   {title: 'D', data: [{name: 'Devin'}]},
+ //   {title: 'J', data: [{name: 'Jackson'}, {name:'James'}]},
+ //  ]}
+ //  renderItem={({item}) => <Text style={styles.item}>{item.name}</Text>}
+ //  renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+ //  renderSectionFooter={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+ //  keyExtractor={(item4, index) => index}
+ // />
+ // <FlatList
+ //  data={this.state.data}
+ //  keyExtractor={(item, index)=>index}
+ //  renderItem={({item})=>(<CustomListItemMaker key = {item} name={item}/>)}
+ // />
 
 export class CustomListItemMaker extends React.Component{
   constructor(props){
@@ -26,6 +45,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       selected: false,
+      goApp2: false,
+      goApp3: false,
       data: ['Nshan', 'Lusine', 'Ashot', 'Vahe', 'Seda', 'Aramayis', 'Seryoja', 'David', 'Yasha', ]
     }
   }
@@ -35,6 +56,14 @@ export default class App extends React.Component {
       selected: !isSelected ,
     });
     console.log(isSelected)
+  }
+
+  goNext(){
+    this.setState({goApp2: true})
+  }
+
+  returnFromNext(){
+    this.setState({goApp2: false})
   }
 
   render() {
@@ -49,9 +78,17 @@ export default class App extends React.Component {
           selected = {this.state.selected}
           click = {()=>this.pressButton(this.state.selected)}
           />
+        <Button title='go App2' onPress={()=>this.goNext()}/>
         <Image source={require('./assets/images.png')}/>
         <CustomList style={styles.custList} listValues={this.state.data}
           item = {(i, name)=>(<CustomListItemMaker  key={i} name={name}/>)} />
+        <Modal
+          visible={this.state.goApp2}
+          animationTyle='fade'
+          onRequestClose={()=>(console.log('Android or TV IOS'))}>
+          <App2 close={()=>this.returnFromNext(2)}/>
+        </Modal>
+
       </View>
     );
   }
@@ -76,10 +113,8 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     flex: 1,
-    // flexDirection: 'row',
     backgroundColor: '#fff',
     alignItems: 'center',
-    // justifyContent: 'center',
   },
   custList:{
     paddingTop: 0
