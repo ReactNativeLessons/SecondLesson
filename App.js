@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Dimensions,  TouchableOpacity, Button, M
 import RadioButton from './customComponent/RadioButton';
 import CustomList from './customComponent/CustomList';
 
-import App2 from './App2';
+import RegistrationScreen from './quiz/screens/registration';
 
 
  // <SectionList style={{width: 200}}
@@ -29,7 +29,7 @@ export class CustomListItemMaker extends React.Component{
           //  <Image source={require('../assets/images.png')}/>
   render(){
     return(
-      <TouchableOpacity onPress={()=>alert('Hello ' + this.props.name)}>
+      <TouchableOpacity onPress={()=>this.asdf()}>
         <View style={listItemStyle.itemStyle}>
 
             <Text>{this.props.name}</Text>
@@ -86,7 +86,7 @@ export default class App extends React.Component {
           visible={this.state.goApp2}
           animationTyle='fade'
           onRequestClose={()=>(console.log('Android or TV IOS'))}>
-          <App2 close={()=>this.returnFromNext(2)}/>
+          <RegistrationScreen />
         </Modal>
 
       </View>
